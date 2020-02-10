@@ -1,5 +1,5 @@
 package application;
-	
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -22,11 +22,12 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Human HM = new Human();
 		Lease test = new Lease();
 		test.getStudent().getID();
 		launch(args);
+		// hey this is for testing
 	}
 }
