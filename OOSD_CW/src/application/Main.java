@@ -41,7 +41,7 @@ public class Main extends Application {
 	public static void main(String[] args) throws IOException, CsvValidationException {
 		HallData();
 		RoomData();
-		//launch(args);
+		launch(args);
 	}
 
 	// [[ Adding Hall data from file ]]

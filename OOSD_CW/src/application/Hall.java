@@ -2,12 +2,15 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Hall {
 	String name;
 	String address;
 	int numroom;
 	String telenum;
-	ArrayList<Room> RoomList = new ArrayList<>();
+	ObservableList<Room> RoomList = FXCollections.observableArrayList();
 	Human Warden = new Human();
 
 	public Hall(){
@@ -46,12 +49,6 @@ public class Hall {
 		this.telenum = telenum;
 	}
 
-	public ArrayList<Room> getRoomList() {
-		return RoomList;
-	}
-	public void setRoomList(ArrayList<Room> roomList) {
-		RoomList = roomList;
-	}
 	public Human getWarden() {
 		return Warden;
 	}
