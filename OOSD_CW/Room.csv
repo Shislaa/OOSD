@@ -1,0 +1,9 @@
+Hall Name,Hall Address,Room Number,Occupancy Status,Cleaning Status,Area,Rent Rate,Lease Number,Lease duration (months),Student Name,Student ID
+UWEH1,Student Village,101,Occupied,Clean,10,"10,000",1001,6,Jason Nathan,19025765
+UWEH1,Student Village,102,Unoccupied,Offline,20,"20,000",,,,
+UWEH1,Student Village,103,Occupied,Clean,15,"15,000",1003,12,Minh,19037875
+UWEH2,Wallscourt Park,101,Unoccupied,Clean,20,"20,000",1004,6,Quan,19036176
+UWEH2,Wallscourt Park,102,Occupied,Offline,10,"10,000",,,,
+UWEH2,Wallscourt Park,103,Unoccupied,Dirty,20,"20,000",,,,
+UWEH3,Carroll Court,101,Unoccupied,Offline,15,"15,000",,,,
+UWEH3,Carroll Court,102,Occupied,Clean,20,"20,000",1007,12,Huy,19098752
