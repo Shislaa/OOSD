@@ -45,7 +45,6 @@ public class Main extends Application {
 				System.out.println("Number of room: "+scan.next());
 				System.out.println("Hall Phone Number: "+scan.next());
 				System.out.println("Warden ID: "+scan.next());
-				scan.skip("\n");
 //				hall.setName(scan.next());
 //				hall.setAddress(scan.next());
 //				//hall.setNumroom(scan.nextInt());
