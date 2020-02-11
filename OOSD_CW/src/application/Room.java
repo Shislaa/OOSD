@@ -2,59 +2,63 @@ package application;
 
 
 public class Room {
-	static String cleaningStatus;
-	static String occupancyStatus;
-	static int rentrate;
-	static int area;
-	static String roomnumber;
-	static String HallName;
-	static String HallAddress;
+	String cleaningStatus;
+	String occupancyStatus;
+	int rentrate;
+	int area;
+	String roomnumber;
+	String HallName;
+	String HallAddress;
 	Lease roomlease = new Lease();
-	public static int getRentrate() {
-		return rentrate;
-	}
-	public static void setRentrate(int rentrate) {
-		Room.rentrate = rentrate;
-	}
-	public static int getArea() {
-		return area;
-	}
-	public static void setArea(int area) {
-		Room.area = area;
-	}
-	public static String getRoomnumber() {
-		return roomnumber;
-	}
-	public static void setRoomnumber(String roomnumber) {
-		Room.roomnumber = roomnumber;
-	}
-	public static boolean checkavailability() {
-		return true;
-	}
-	public static String getHallName() {
-		return HallName;
-	}
-	public static void setHallName(String hallName) {
-		HallName = hallName;
-	}
-	public static String getHallAddress() {
-		return HallAddress;
-	}
-	public static void setHallAddress(String hallAddress) {
-		HallAddress = hallAddress;
-	}
-	public static String getOccupancyStatus() {
-		return occupancyStatus;
-	}
-	public static void setOccupancyStatus(String occupancyStatus) {
-		Room.occupancyStatus = occupancyStatus;
-	}
-	public static String getCleaningStatus() {
+	public String getCleaningStatus() {
 		return cleaningStatus;
 	}
-	public static void setCleaningStatus(String cleaningStatus) {
-		Room.cleaningStatus = cleaningStatus;
+	public void setCleaningStatus(String cleaningStatus) {
+		this.cleaningStatus = cleaningStatus;
 	}
+	public String getOccupancyStatus() {
+		return occupancyStatus;
+	}
+	public void setOccupancyStatus(String occupancyStatus) {
+		this.occupancyStatus = occupancyStatus;
+	}
+	public int getRentrate() {
+		return rentrate;
+	}
+	public void setRentrate(int rentrate) {
+		this.rentrate = rentrate;
+	}
+	public int getArea() {
+		return area;
+	}
+	public void setArea(int area) {
+		this.area = area;
+	}
+	public String getRoomnumber() {
+		return roomnumber;
+	}
+	public void setRoomnumber(String roomnumber) {
+		this.roomnumber = roomnumber;
+	}
+	public String getHallName() {
+		return HallName;
+	}
+	public void setHallName(String hallName) {
+		HallName = hallName;
+	}
+	public String getHallAddress() {
+		return HallAddress;
+	}
+	public void setHallAddress(String hallAddress) {
+		HallAddress = hallAddress;
+	}
+	public Lease getRoomlease() {
+		return roomlease;
+	}
+	public void setRoomlease(Lease roomlease) {
+		this.roomlease = roomlease;
+	}
+
 
 }
 

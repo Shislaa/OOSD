@@ -55,14 +55,14 @@ public class Main extends Application {
 					HallTitle = reader.readNext();
 				}
 				else {
-					HallList.add(new Hall());
 					String[] temp = reader.readNext();
-					HallList.get(counter - 1).setName(temp[0]);
-					HallList.get(counter - 1).setAddress(temp[1]);
-					HallList.get(counter - 1).setNumroom(Integer.valueOf(temp[2]));
-					HallList.get(counter - 1).setTelenum(temp[3]);
-					HallList.get(counter - 1).Warden.setID(temp[4]);
-					System.out.println(HallList.get(0).name);
+					Hall hall = new Hall();
+					HallList.add(hall);
+					hall.setName(temp[0]);
+					hall.setAddress(temp[1]);
+					hall.setNumroom(Integer.valueOf(temp[2]));
+					hall.setTelenum(temp[3]);
+					hall.Warden.setID(temp[4]);
 				}
 				counter++;
 			}
@@ -85,7 +85,7 @@ public class Main extends Application {
 				else {
 					Room room = new Room();
 					String[] temp = reader.readNext();
-					room.setHallAddress(temp[0]);
+					room.setHallName(temp[0]);
 					room.setHallAddress(temp[1]);
 					room.setRoomnumber(temp[2]);
 					room.setOccupancyStatus(temp[3]);
@@ -96,7 +96,6 @@ public class Main extends Application {
 					room.roomlease.setLduration(temp[8]);
 					room.roomlease.Student.setName(temp[9]);
 					room.roomlease.Student.setID(temp[10]);
-
 					for(int i = 0; i < HallList.size();i++){
 						if (HallList.get(i).getName().equals(room.getHallName())){
 							HallList.get(i).RoomList.add(room);

@@ -3,36 +3,49 @@ package application;
 import java.util.ArrayList;
 
 public class Hall {
-	static String name;
-	static String address;
-	static int numroom;
-	static String telenum;
+	String name;
+	String address;
+	int numroom;
+	String telenum;
 	ArrayList<Room> RoomList = new ArrayList<>();
 	Human Warden = new Human();
-	public static String getName() {
+
+	public Hall(){
+
+	}
+
+	public String getName() {
 		return name;
 	}
-	public static void setName(String name) {
-		Hall.name = name;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public static String getAddress() {
+
+	public String getAddress() {
 		return address;
 	}
-	public static void setAddress(String address) {
-		Hall.address = address;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public static int getNumroom() {
+
+	public int getNumroom() {
 		return numroom;
 	}
-	public static void setNumroom(int numroom) {
-		Hall.numroom = numroom;
+
+	public void setNumroom(int numroom) {
+		this.numroom = numroom;
 	}
-	public static String getTelenum() {
+
+	public String getTelenum() {
 		return telenum;
 	}
-	public static void setTelenum(String telenum) {
-		Hall.telenum = telenum;
+
+	public void setTelenum(String telenum) {
+		this.telenum = telenum;
 	}
+
 	public ArrayList<Room> getRoomList() {
 		return RoomList;
 	}
