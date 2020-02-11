@@ -41,6 +41,8 @@ public class Main extends Application {
 	public static void main(String[] args) throws IOException, CsvValidationException {
 		HallData();
 		RoomData();
+		
+		
 		//launch(args);
 	}
 
@@ -62,7 +64,7 @@ public class Main extends Application {
 					HallList.get(counter - 1).setNumroom(Integer.valueOf(temp[2]));
 					HallList.get(counter - 1).setTelenum(temp[3]);
 					HallList.get(counter - 1).Warden.setID(temp[4]);
-					System.out.println(HallList.get(0).name);
+					System.out.println(HallList.get(0).getName());
 				}
 				counter++;
 			}
