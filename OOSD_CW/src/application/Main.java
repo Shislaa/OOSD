@@ -19,11 +19,6 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
-// [[Initialize variables]]
-	static private 	ArrayList<Hall> HallList = new ArrayList<>();
-	static private 	String[] HallTitle;
-	static private  String[] RoomTitle;
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -38,78 +33,12 @@ public class Main extends Application {
 		}
 	}
 	// [[ MAIN FUNCTION ]]
-	public static void main(String[] args) throws IOException, CsvValidationException {
-		HallData();
-		RoomData();
+	public static void main(String[] args) {
 		launch(args);
 	}
 
 	// [[ Adding Hall data from file ]]
-	public static void HallData() throws NumberFormatException, CsvValidationException, IOException{
-		try {
 
-			CSVReader reader = new CSVReader(new FileReader("Hall.csv"));
-			int counter = 0;
-			while(reader.peek() != null){
-				if (counter == 0){
-					HallTitle = reader.readNext();
-				}
-				else {
-					String[] temp = reader.readNext();
-					Hall hall = new Hall();
-					HallList.add(hall);
-					hall.setName(temp[0]);
-					hall.setAddress(temp[1]);
-					hall.setNumroom(Integer.valueOf(temp[2]));
-					hall.setTelenum(temp[3]);
-					hall.Warden.setID(temp[4]);
-				}
-				counter++;
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	// [[Adding Room data from file]]
-	public static void RoomData() throws NumberFormatException, CsvValidationException, IOException{
-		try {
-
-			CSVReader reader = new CSVReader(new FileReader("Room.csv"));
-			int counter = 0;
-			while(reader.peek() != null){
-				if (counter == 0){
-					RoomTitle = reader.readNext();
-				}
-				else {
-					Room room = new Room();
-					String[] temp = reader.readNext();
-					room.setHallName(temp[0]);
-					room.setHallAddress(temp[1]);
-					room.setRoomnumber(temp[2]);
-					room.setOccupancyStatus(temp[3]);
-					room.setCleaningStatus(temp[4]);
-					room.setArea(Integer.valueOf(temp[5]));
-					room.setRentrate(Integer.valueOf(temp[6]));
-					room.roomlease.setLnum(temp[7]);
-					room.roomlease.setLduration(temp[8]);
-					room.roomlease.Student.setName(temp[9]);
-					room.roomlease.Student.setID(temp[10]);
-					for(int i = 0; i < HallList.size();i++){
-						if (HallList.get(i).getName().equals(room.getHallName())){
-							HallList.get(i).RoomList.add(room);
-							break;
-						}
-					}
-				}
-				counter++;
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
 
 
