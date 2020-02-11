@@ -1,17 +1,11 @@
 package application;
 
 public class Lease {
-	static int Lnum;
+	static String Lnum;
 	static String Lduration;
 	static String roomnumber;
 	static String Halladdress;
 	Human Student = new Human();
-	public static int getLnum() {
-		return Lnum;
-	}
-	public static void setLnum(int lnum) {
-		Lnum = lnum;
-	}
 	public static String getLduration() {
 		return Lduration;
 	}
@@ -33,5 +27,12 @@ public class Lease {
 	public Human getStudent() {
 		return Student;
 	}
+	public static String getLnum() {
+		return Lnum;
+	}
+	public static void setLnum(String lnum) {
+		Lnum = lnum;
+	}
+
 }
 

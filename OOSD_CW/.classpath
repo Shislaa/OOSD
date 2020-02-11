@@ -16,11 +16,5 @@
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
-	</classpathentry>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/Lil Shil/Downloads/opencsv-5.1.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/nguye/Downloads/opencsv-5.1.jar"/>
->>>>>>> 6ced6c3a59388adbc934deba6e0283ee2a110462
-	<classpathentry kind="output" path="target/classes"/>
+	</classpathentry><classpathentry kind="lib" path="C:/Users/Lil Shil/Downloads/opencsv-5.1.jar"/><classpathentry kind="output" path="target/classes"/>
 </classpath>

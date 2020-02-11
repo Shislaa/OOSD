@@ -2,38 +2,14 @@ package application;
 
 
 public class Room {
-	static String clean;
-	static String dirty;
-	static boolean occupied;
-	static String offline;
+	static String cleaningStatus;
+	static String occupancyStatus;
 	static int rentrate;
 	static int area;
 	static String roomnumber;
+	static String HallName;
+	static String HallAddress;
 	Lease roomlease = new Lease();
-	public static String getClean() {
-		return clean;
-	}
-	public static void setClean(String clean) {
-		Room.clean = clean;
-	}
-	public static String getDirty() {
-		return dirty;
-	}
-	public static void setDirty(String dirty) {
-		Room.dirty = dirty;
-	}
-	public static boolean isOccupied() {
-		return occupied;
-	}
-	public static void setOccupied(boolean occupied) {
-		Room.occupied = occupied;
-	}
-	public static String getOffline() {
-		return offline;
-	}
-	public static void setOffline(String offline) {
-		Room.offline = offline;
-	}
 	public static int getRentrate() {
 		return rentrate;
 	}
@@ -55,6 +31,30 @@ public class Room {
 	public static boolean checkavailability() {
 		return true;
 	}
-	
+	public static String getHallName() {
+		return HallName;
+	}
+	public static void setHallName(String hallName) {
+		HallName = hallName;
+	}
+	public static String getHallAddress() {
+		return HallAddress;
+	}
+	public static void setHallAddress(String hallAddress) {
+		HallAddress = hallAddress;
+	}
+	public static String getOccupancyStatus() {
+		return occupancyStatus;
+	}
+	public static void setOccupancyStatus(String occupancyStatus) {
+		Room.occupancyStatus = occupancyStatus;
+	}
+	public static String getCleaningStatus() {
+		return cleaningStatus;
+	}
+	public static void setCleaningStatus(String cleaningStatus) {
+		Room.cleaningStatus = cleaningStatus;
+	}
+
 }
 

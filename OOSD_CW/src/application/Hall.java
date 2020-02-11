@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Hall {
 	static String name;
 	static String address;
-	static String numroom;
+	static int numroom;
 	static String telenum;
 	ArrayList<Room> RoomList = new ArrayList<>();
 	Human Warden = new Human();
@@ -21,10 +21,10 @@ public class Hall {
 	public static void setAddress(String address) {
 		Hall.address = address;
 	}
-	public static String getNumroom() {
+	public static int getNumroom() {
 		return numroom;
 	}
-	public static void setNumroom(String numroom) {
+	public static void setNumroom(int numroom) {
 		Hall.numroom = numroom;
 	}
 	public static String getTelenum() {
@@ -45,6 +45,6 @@ public class Hall {
 	public void setWarden(Human warden) {
 		Warden = warden;
 	}
-	
+
 }
 
