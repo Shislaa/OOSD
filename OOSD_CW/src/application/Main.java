@@ -2,21 +2,25 @@ package application;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
 // [[Initialize variables]]
-	static private File HallFile = new File("Hall.csv");
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -31,37 +35,14 @@ public class Main extends Application {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, CsvValidationException {
 		try {
-			Scanner scan = new Scanner(HallFile);
-			ArrayList<Hall> halllist = new ArrayList<>();
-			int t = 0;
-			while(scan.hasNext()) {
-				if (t > 0) {
-				Hall hall = new Hall();
-				scan.useDelimiter(",");
-				System.out.println("Name: " + scan.next());
-				System.out.println("Address: "+scan.next());
-				System.out.println("Number of room: "+scan.next());
-				System.out.println("Hall Phone Number: "+scan.next());
-				System.out.println("Warden ID: "+scan.next());
-//				hall.setName(scan.next());
-//				hall.setAddress(scan.next());
-//				//hall.setNumroom(scan.nextInt());
-//				hall.setTelenum(scan.next());
-//				hall.Warden.setID(scan.next());
-//				halllist.add(hall);
-				}
-				if(t == 0) {
-					scan.nextLine();
-				}
-				t++;
-			}
-			//System.out.println(halllist);
+			CSVReader reader = new CSVReader(new FileReader("Hall.csv"));
+			System.out.println(reader.readNext());
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//launch(args);
-		// hey this is for testing
 	}
 }
