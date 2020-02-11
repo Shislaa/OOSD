@@ -1,26 +1,27 @@
 package application;
 
 public class Human {
-	static String ID;
-	static String PW;
-	static String name;
-	public static String getID() {
+	String ID;
+	String PW;
+	String name;
+	public String getID() {
 		return ID;
 	}
-	public static void setID(String iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
-	public static String getPW() {
+	public String getPW() {
 		return PW;
 	}
-	public static void setPW(String pW) {
+	public void setPW(String pW) {
 		PW = pW;
 	}
-	public static String getName() {
+	public String getName() {
 		return name;
 	}
-	public static void setName(String name) {
-		Human.name = name;
+	public void setName(String name) {
+		this.name = name;
 	}
+
 }
 
