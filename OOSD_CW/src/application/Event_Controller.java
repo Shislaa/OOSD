@@ -64,10 +64,49 @@ public class Event_Controller {
 				Scene scene = new Scene(root);
 
 				// Hall Name Column
-				TableColumn<Room, String> hallName = new TableColumn<>(HallTitle[0]);
+				TableColumn<Room, String> hallName = new TableColumn<>(RoomTitle[0]);
 				hallName.setMinWidth(200);
 				hallName.setCellValueFactory(new PropertyValueFactory<>("HallName"));
-
+				
+				//Hall Address Column
+				TableColumn<Room, String> hallAdd = new TableColumn<>(RoomTitle[1]);
+				hallAdd.setMinWidth(200);
+				hallAdd.setCellValueFactory(new PropertyValueFactory<>("HallAddress"));
+				
+				//Room num Column
+				TableColumn<Room, String> RoomNum = new TableColumn<>(RoomTitle[2]);
+				RoomNum.setMinWidth(200);
+				RoomNum.setCellValueFactory(new PropertyValueFactory<>("roomnumber"));
+				
+				//Occupancy Column
+				TableColumn<Room, String> Occupancy = new TableColumn<>(RoomTitle[3]);
+				Occupancy.setMinWidth(200);
+				Occupancy.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
+				
+				//CleaningStatus Column
+				TableColumn<Room, String> CleaningStatus = new TableColumn<>(RoomTitle[4]);
+				CleaningStatus.setMinWidth(200);
+				CleaningStatus.setCellValueFactory(new PropertyValueFactory<>("cleaningStatus"));
+				
+				//Area Column
+				TableColumn<Room, String> Area = new TableColumn<>(RoomTitle[5]);
+				Area.setMinWidth(200);
+				Area.setCellValueFactory(new PropertyValueFactory<>("area"));
+				
+				//RentRate Column
+				TableColumn<Room, String> RentRate = new TableColumn<>(RoomTitle[6]);
+				RentRate.setMinWidth(200);
+				RentRate.setCellValueFactory(new PropertyValueFactory<>("rentrate"));
+				
+				//LeaseNumber Column
+				TableColumn<Room, String> LNum = new TableColumn<>(RoomTitle[7]);
+				LNum.setMinWidth(200);
+				LNum.setCellValueFactory(new PropertyValueFactory<>("Lnum"));
+				
+				
+				
+				
+				
 
 				primaryStage.setTitle("UWE Accomodation System");
 				primaryStage.setScene(scene);

@@ -49,12 +49,22 @@ public class Hall {
 		this.telenum = telenum;
 	}
 
+	public ObservableList<Room> getRoomList() {
+		return RoomList;
+	}
+
+	public void setRoomList(ObservableList<Room> roomList) {
+		RoomList = roomList;
+	}
+
 	public Human getWarden() {
 		return Warden;
 	}
+
 	public void setWarden(Human warden) {
 		Warden = warden;
 	}
 
+	
 }
 
