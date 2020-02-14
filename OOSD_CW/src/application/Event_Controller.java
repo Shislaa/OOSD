@@ -29,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -90,6 +91,20 @@ public class Event_Controller {
 	private Label Telenum;
 	@FXML
 	private Label WarName;
+	@FXML
+	private TextField LNumb;
+	@FXML
+	private TextField SName;
+	@FXML
+	private TextField SID;
+	@FXML
+	private TextField OStatus;
+	@FXML
+	private TextField CStatus;
+	@FXML
+	private TextField LDurr;
+	@FXML
+	private Button EditBttn;
 	private static int counterHall = 0;
 
 
@@ -300,5 +315,17 @@ public class Event_Controller {
 		WarName.setText("Warden: " + HallList.get(2).Warden.name);
 		System.out.println("Hall 3 selected");
 	    Columns(HallList.get(2).RoomList);
+	}
+
+	public void displayShiet(MouseEvent event){
+		ObserveList newList = (ObserveList) InfoTable.getSelectionModel().getSelectedItem();
+		LNumb.setText(newList.getLnum());
+		LDurr.setText(newList.getLduration());
+		SName.setText(newList.getName());
+		SID.setText(newList.getID());
+		OStatus.setText(newList.getOccupancyStatus());
+		CStatus.setText(newList.getCleaningStatus());
+		CStatus.setEditable(false);
+
 	}
 }
