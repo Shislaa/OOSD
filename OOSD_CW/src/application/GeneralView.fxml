@@ -39,18 +39,38 @@
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="195.0" layoutX="1072.0" layoutY="604.0" stroke="BLACK" strokeType="INSIDE" width="470.0" />
     <Button fx:id="ViewAllButton" font="$x2" layoutX="715.0" layoutY="653.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="186.0" text="View All" />
     <Button fx:id="LogoutButton" font="$x2" layoutX="718.0" layoutY="791.0" mnemonicParsing="false" onAction="#LogoutEvent" prefHeight="59.0" prefWidth="186.0" text="Log out" />
-    <TableView fx:id="InfoTable" layoutX="16.0" layoutY="66.0" prefHeight="494.0" prefWidth="1565.0">
+    <Button fx:id="CheckAva" font="$x2" layoutX="717.0" layoutY="721.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="186.0" text="Room Available" />
+    <MenuButton fx:id="HallButton" layoutX="1368.0" layoutY="18.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="142.0" text="Hall List">
+      <items>
+        <MenuItem mnemonicParsing="false" onAction="#Button1Controller" text="Hall 1" fx:id="Choice1" />
+        <MenuItem mnemonicParsing="false" onAction="#Button2Controller" text="Hall 2" fx:id="Choice2" />
+        <MenuItem mnemonicParsing="false" onAction="#Button3Controller" text="Hall 3" fx:id="Choice3" />
+      </items>
+    </MenuButton>
+    <TableView fx:id="InfoTable" layoutX="14.0" layoutY="65.0" prefHeight="493.0" prefWidth="1570.0">
       <columns>
-        <TableColumn prefWidth="75.0" text="C1" />
-        <TableColumn prefWidth="75.0" text="C2" />
+        <TableColumn prefWidth="200.0" text="Hall Name" fx:id="hallName" />
+        <TableColumn prefWidth="200.0" text="Hall Address" fx:id="hallAdd" />
+        <TableColumn prefWidth="200.0" text="Room Number" fx:id="RoomNum" />
+        <TableColumn prefWidth="200.0" text="Occupancy Status" fx:id="Occupancy" />
+        <TableColumn prefWidth="200.0" text="Cleaning Status" fx:id="CleaningStatus" />
+        <TableColumn prefWidth="200.0" text="Area" fx:id="Area" />
+        <TableColumn prefWidth="200.0" text="Rent Rate" fx:id="RentRate" />
+        <TableColumn prefWidth="200.0" text="Lease Number" fx:id="LNum" />
+        <TableColumn prefWidth="200.0" text="Lease duration (months)" fx:id="LDur" />
+        <TableColumn prefWidth="200.0" text="Student Name" fx:id="StuName" />
+        <TableColumn prefWidth="200.0" text="Student ID" fx:id="StuID" />
       </columns>
     </TableView>
-    <SplitMenuButton layoutX="1349.0" layoutY="22.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="191.0" text="SplitMenuButton">
-      <items>
-        <MenuItem mnemonicParsing="false" text="Action 1" />
-        <MenuItem mnemonicParsing="false" text="Action 2" />
-      </items>
-    </SplitMenuButton>
-    <Button fx:id="CheckAva" font="$x2" layoutX="717.0" layoutY="721.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="186.0" text="Room Available" />
+    <Label font="$x2" layoutX="1098.0" layoutY="620.0" text="Hall Information:" />
+    <Label fx:id="HallNum" layoutX="1098.0" layoutY="653.0" text=" ">
+      <font>
+        <Font size="15.0" fx:id="x3" />
+      </font>
+    </Label>
+    <Label fx:id="HallAdd" font="$x3" layoutX="1098.0" layoutY="673.0" text=" " />
+    <Label fx:id="NumRoom" font="$x3" layoutX="1098.0" layoutY="694.0" text=" " />
+    <Label fx:id="Telenum" font="$x3" layoutX="1098.0" layoutY="717.0" text=" " />
+    <Label fx:id="WarName" font="$x3" layoutX="1098.0" layoutY="741.0" text=" " />
   </children>
 </AnchorPane>

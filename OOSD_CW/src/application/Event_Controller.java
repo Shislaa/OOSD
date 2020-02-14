@@ -20,6 +20,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,9 +34,9 @@ import javafx.stage.Stage;
 
 public class Event_Controller {
 
-	static private 	ObservableList<Hall> HallList = FXCollections.observableArrayList();
-	static private 	String[] HallTitle;
-	static private  String[] RoomTitle;
+	private 	ObservableList<Hall> HallList = FXCollections.observableArrayList();;
+	private 	String[] HallTitle;
+	private  	String[] RoomTitle;
 
 	@FXML
 	private TextField Username;
@@ -47,13 +50,53 @@ public class Event_Controller {
 	private ImageView UWELogo;
 	@FXML
 	private TableView InfoTable;
+	@FXML
+	private MenuButton HallButton;
+	@FXML
+	private MenuItem Choice1;
+	@FXML
+	private MenuItem Choice2;
+	@FXML
+	private MenuItem Choice3;
+	@FXML
+	private TableColumn<ObserveList, String> StuID;
+	@FXML
+	private TableColumn<ObserveList, String> StuName;
+	@FXML
+	private TableColumn<ObserveList, String> LDur;
+	@FXML
+	private TableColumn<ObserveList, String> LNum;
+	@FXML
+	private TableColumn<ObserveList, Integer> RentRate;
+	@FXML
+	private TableColumn<ObserveList, Integer> Area;
+	@FXML
+	private TableColumn<ObserveList, String> CleaningStatus;
+	@FXML
+	private TableColumn<ObserveList, String> Occupancy;
+	@FXML
+	private TableColumn<ObserveList, String> RoomNum ;
+	@FXML
+	private TableColumn<ObserveList, String> hallAdd ;
+	@FXML
+	private TableColumn<ObserveList, String> hallName;
+	@FXML
+	private Label HallNum;
+	@FXML
+	private Label HallAdd;
+	@FXML
+	private Label NumRoom;
+	@FXML
+	private Label Telenum;
+	@FXML
+	private Label WarName;
+	private static int counterHall = 0;
+
 
 	// [[Login controller]]
 
 	public void LoginEvent(ActionEvent event) throws CsvValidationException, IOException {
 		if(Username.getText().equals("admin") && Password.getText().equals("admin")) {
-			HallData();
-			RoomData();
 			System.out.println("Login Success");
 			// [[ Hide login window when login success]]
 			((Node)event.getSource()).getScene().getWindow().hide();
@@ -62,57 +105,9 @@ public class Event_Controller {
 			try {
 				Pane root = loader.load(getClass().getResource("GeneralView.fxml").openStream());
 				Scene scene = new Scene(root);
-
-				// Hall Name Column
-				TableColumn<Room, String> hallName = new TableColumn<>(RoomTitle[0]);
-				hallName.setMinWidth(200);
-				hallName.setCellValueFactory(new PropertyValueFactory<>("HallName"));
-				
-				//Hall Address Column
-				TableColumn<Room, String> hallAdd = new TableColumn<>(RoomTitle[1]);
-				hallAdd.setMinWidth(200);
-				hallAdd.setCellValueFactory(new PropertyValueFactory<>("HallAddress"));
-				
-				//Room num Column
-				TableColumn<Room, String> RoomNum = new TableColumn<>(RoomTitle[2]);
-				RoomNum.setMinWidth(200);
-				RoomNum.setCellValueFactory(new PropertyValueFactory<>("roomnumber"));
-				
-				//Occupancy Column
-				TableColumn<Room, String> Occupancy = new TableColumn<>(RoomTitle[3]);
-				Occupancy.setMinWidth(200);
-				Occupancy.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
-				
-				//CleaningStatus Column
-				TableColumn<Room, String> CleaningStatus = new TableColumn<>(RoomTitle[4]);
-				CleaningStatus.setMinWidth(200);
-				CleaningStatus.setCellValueFactory(new PropertyValueFactory<>("cleaningStatus"));
-				
-				//Area Column
-				TableColumn<Room, String> Area = new TableColumn<>(RoomTitle[5]);
-				Area.setMinWidth(200);
-				Area.setCellValueFactory(new PropertyValueFactory<>("area"));
-				
-				//RentRate Column
-				TableColumn<Room, String> RentRate = new TableColumn<>(RoomTitle[6]);
-				RentRate.setMinWidth(200);
-				RentRate.setCellValueFactory(new PropertyValueFactory<>("rentrate"));
-				
-				//LeaseNumber Column
-				TableColumn<Room, String> LNum = new TableColumn<>(RoomTitle[7]);
-				LNum.setMinWidth(200);
-				LNum.setCellValueFactory(new PropertyValueFactory<>("Lnum"));
-				
-				
-				
-				
-				
-
 				primaryStage.setTitle("UWE Accomodation System");
 				primaryStage.setScene(scene);
 				primaryStage.show();
-
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -127,9 +122,8 @@ public class Event_Controller {
 		((Node)event.getSource()).getScene().getWindow().hide();
 	}
 
-	public static void HallData() throws NumberFormatException, CsvValidationException, IOException{
+	public void HallData() throws NumberFormatException, CsvValidationException, IOException{
 		try {
-
 			CSVReader reader = new CSVReader(new FileReader("Hall.csv"));
 			int counter = 0;
 			while(reader.peek() != null){
@@ -155,7 +149,7 @@ public class Event_Controller {
 	}
 
 	// [[Adding Room data from file]]
-	public static void RoomData() throws NumberFormatException, CsvValidationException, IOException{
+	public void RoomData() throws NumberFormatException, CsvValidationException, IOException{
 		try {
 
 			CSVReader reader = new CSVReader(new FileReader("Room.csv"));
@@ -193,4 +187,118 @@ public class Event_Controller {
 		}
 	}
 
+	public void Columns(ObservableList<Room> RoomList){
+		// Hall Name Column
+
+		hallName.setCellValueFactory(new PropertyValueFactory<>("HallName"));
+
+		//Hall Address Column
+
+		hallAdd.setCellValueFactory(new PropertyValueFactory<>("HallAddress"));
+
+		//Room num Column
+
+		RoomNum.setCellValueFactory(new PropertyValueFactory<>("roomnumber"));
+
+		//Occupancy Column
+
+		Occupancy.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
+
+		//CleaningStatus Column
+
+		CleaningStatus.setCellValueFactory(new PropertyValueFactory<>("cleaningStatus"));
+
+		//Area Column
+
+		Area.setCellValueFactory(new PropertyValueFactory<>("area"));
+
+		//RentRate Column
+
+		RentRate.setCellValueFactory(new PropertyValueFactory<>("rentrate"));
+
+		//LeaseNumber Column
+
+		LNum.setCellValueFactory(new PropertyValueFactory<>("Lnum"));
+
+		//Lease Duration Column
+
+		LDur.setCellValueFactory(new PropertyValueFactory<>("Lduration"));
+
+		//Student Name Column
+
+		StuName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+		//Student ID Column
+
+		StuID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+
+		InfoTable.setItems(DisplayList(RoomList));
+	}
+
+// [[MAKING A LIST FOR THE TABLE]]
+	public ObservableList<ObserveList> DisplayList(ObservableList<Room> RoomList){
+		ObservableList<ObserveList> Temp = FXCollections.observableArrayList();
+		for (int i = 0; i < RoomList.size(); i++){
+			ObserveList newList = new ObserveList();
+			newList.setHallName(RoomList.get(i).getHallName());
+			newList.setHallAddress(RoomList.get(i).getHallAddress());
+			newList.setRoomnumber(RoomList.get(i).getRoomnumber());
+			newList.setOccupancyStatus(RoomList.get(i).getOccupancyStatus());
+			newList.setCleaningStatus(RoomList.get(i).getCleaningStatus());
+			newList.setArea(RoomList.get(i).getArea());
+			newList.setRentrate(RoomList.get(i).getRentrate());
+			newList.setLnum(RoomList.get(i).roomlease.getLnum());
+			newList.setLduration(RoomList.get(i).roomlease.getLduration());
+			newList.setName(RoomList.get(i).roomlease.Student.name);
+			newList.setID(RoomList.get(i).roomlease.Student.ID);
+			Temp.add(newList);
+		}
+
+		return Temp;
+	}
+
+	public void Button1Controller(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
+		if (counterHall == 0){
+			HallData();
+			RoomData();
+		}
+		counterHall++;
+		System.out.println("Hall 1 selected");
+		HallNum.setText("Hall Name: "+ HallList.get(0).getName());
+		HallAdd.setText("Hall Address: "+ HallList.get(0).getAddress());
+		NumRoom.setText("Number of Room: " + HallList.get(0).getNumroom());
+		Telenum.setText("Telephone: " + HallList.get(0).getTelenum());
+		WarName.setText("Warden: " + HallList.get(0).Warden.name);
+	    Columns(HallList.get(0).RoomList);
+	}
+
+	public void Button2Controller(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
+		if (counterHall == 0){
+			HallData();
+			RoomData();
+		}
+		counterHall++;
+		HallNum.setText("Hall Name: "+ HallList.get(1).getName());
+		HallAdd.setText("Hall Address: "+ HallList.get(1).getAddress());
+		NumRoom.setText("Number of Room: " + HallList.get(1).getNumroom());
+		Telenum.setText("Telephone: " + HallList.get(1).getTelenum());
+		WarName.setText("Warden: " + HallList.get(1).Warden.name);
+		System.out.println("Hall 2 selected");
+	    Columns(HallList.get(1).RoomList);
+	}
+
+	public void Button3Controller(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
+		if (counterHall == 0){
+			HallData();
+			RoomData();
+		}
+		counterHall++;
+		HallNum.setText("Hall Name: "+ HallList.get(2).getName());
+		HallAdd.setText("Hall Address: "+ HallList.get(2).getAddress());
+		NumRoom.setText("Number of Room: " + HallList.get(2).getNumroom());
+		Telenum.setText("Telephone: " + HallList.get(2).getTelenum());
+		WarName.setText("Warden: " + HallList.get(2).Warden.name);
+		System.out.println("Hall 3 selected");
+	    Columns(HallList.get(2).RoomList);
+	}
 }
