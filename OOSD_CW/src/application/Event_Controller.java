@@ -38,6 +38,7 @@ public class Event_Controller {
 	private 	ObservableList<Hall> HallList = FXCollections.observableArrayList();;
 	private 	String[] HallTitle;
 	private  	String[] RoomTitle;
+	private 	ObserveList DisplayList;
 
 	@FXML
 	private TextField Username;
@@ -319,6 +320,7 @@ public class Event_Controller {
 
 	public void displayShiet(MouseEvent event){
 		ObserveList newList = (ObserveList) InfoTable.getSelectionModel().getSelectedItem();
+		DisplayList = newList;
 		LNumb.setText(newList.getLnum());
 		LDurr.setText(newList.getLduration());
 		SName.setText(newList.getName());
@@ -326,6 +328,43 @@ public class Event_Controller {
 		OStatus.setText(newList.getOccupancyStatus());
 		CStatus.setText(newList.getCleaningStatus());
 		CStatus.setEditable(false);
+
+
+	}
+
+	public void EditInfo(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
+		String HalName = DisplayList.getHallName();
+		String RoomNumber = DisplayList.getRoomnumber();
+		int Hn = 0;
+		int Rn = 0;
+		for (int i =0; i < HallList.size();i++){
+			if(HalName.equals(HallList.get(i).getName())){
+				for (int j = 0; j < HallList.get(i).RoomList.size(); j++){
+					if(RoomNumber.equals(HallList.get(i).RoomList.get(j).roomnumber)){
+						Hn = i;
+						Rn = j;
+						break;
+					}
+				}
+			}
+			break;
+		}
+		HallList.get(Hn).RoomList.get(Rn).roomlease.setLnum(LNumb.getText());
+		HallList.get(Hn).RoomList.get(Rn).roomlease.setLduration(LDurr.getText());;
+		HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setName(SName.getText());;
+		HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setID(SID.getText());;
+		HallList.get(Hn).RoomList.get(Rn).setOccupancyStatus(OStatus.getText());;
+		HallList.get(Hn).RoomList.get(Rn).setCleaningStatus(CStatus.getText());;
+
+		if(HallList.get(Hn).getName().equals("UWEH1")){
+			Columns(HallList.get(0).RoomList);
+		}
+		if(HallList.get(Hn).getName().equals("UWEH2")){
+			Columns(HallList.get(1).RoomList);
+		}
+		if(HallList.get(Hn).getName().equals("UWEH3")){
+			Columns(HallList.get(2).RoomList);
+		}
 
 	}
 }
