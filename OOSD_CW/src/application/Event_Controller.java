@@ -296,6 +296,7 @@ public class Event_Controller {
 		Telenum.setText("Telephone: " + HallList.get(0).getTelenum());
 		WarName.setText("Warden: " + HallList.get(0).Warden.name);
 	    Columns(HallList.get(0).RoomList);
+	    HallButton.setText(Choice1.getText());
 	}
 
 	public void Button2Controller(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
@@ -311,6 +312,7 @@ public class Event_Controller {
 		WarName.setText("Warden: " + HallList.get(1).Warden.name);
 		System.out.println("Hall 2 selected");
 	    Columns(HallList.get(1).RoomList);
+	    HallButton.setText(Choice2.getText());
 	}
 
 	public void Button3Controller(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
@@ -326,6 +328,7 @@ public class Event_Controller {
 		WarName.setText("Warden: " + HallList.get(2).Warden.name);
 		System.out.println("Hall 3 selected");
 	    Columns(HallList.get(2).RoomList);
+	    HallButton.setText(Choice3.getText());
 	}
 
 	public void displayShiet(MouseEvent event){
