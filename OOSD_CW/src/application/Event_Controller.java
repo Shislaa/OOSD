@@ -107,12 +107,24 @@ public class Event_Controller {
 	@FXML
 	private Button EditBttn;
 	private static int counterHall = 0;
+	static boolean IsManager = false;
+	static boolean IsWarden = false;
 
 
 	// [[Login controller]]
 
 	public void LoginEvent(ActionEvent event) throws CsvValidationException, IOException {
 		if(Username.getText().equals("admin") && Password.getText().equals("admin")) {
+			IsManager = true;
+		}
+		else if(Username.getText().equals("I_am_Warden") && Password.getText().equals("Yeah_i_is")) {
+			IsWarden = true;
+		}
+		else{
+			System.out.println("Login Failed");
+			Statuslbl.setText("Wrong username or password");
+		}
+		if (IsManager || IsWarden){
 			System.out.println("Login Success");
 			// [[ Hide login window when login success]]
 			((Node)event.getSource()).getScene().getWindow().hide();
@@ -127,11 +139,6 @@ public class Event_Controller {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
-		}
-		else {
-			System.out.println("Login Failed");
-			Statuslbl.setText("Wrong username or password");
 		}
 	}
 	public void LogoutEvent(ActionEvent event) {
@@ -327,8 +334,16 @@ public class Event_Controller {
 		SID.setText(newList.getID());
 		OStatus.setText(newList.getOccupancyStatus());
 		CStatus.setText(newList.getCleaningStatus());
-		CStatus.setEditable(false);
-
+		if(IsManager == true){
+			CStatus.setDisable(true);
+		}
+		else if(IsWarden){
+			LNumb.setDisable(true);
+			SName.setDisable(true);
+			SID.setDisable(true);
+			OStatus.setDisable(true);
+			LDurr.setDisable(true);
+		}
 
 	}
 
