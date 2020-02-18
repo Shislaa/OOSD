@@ -38,7 +38,7 @@
     </Rectangle>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="243.0" layoutX="67.0" layoutY="607.0" stroke="BLACK" strokeType="INSIDE" width="470.0" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="236.0" layoutX="1082.0" layoutY="614.0" stroke="BLACK" strokeType="INSIDE" width="470.0" />
-    <Button fx:id="ViewAllButton" font="$x2" layoutX="715.0" layoutY="653.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="186.0" text="View All" />
+    <Button id="ViewAllButton" fx:id="EditAllButton" font="$x2" layoutX="715.0" layoutY="653.0" mnemonicParsing="false" onAction="#ViewAllController" prefHeight="57.0" prefWidth="186.0" text="Edit All" />
     <Button fx:id="LogoutButton" font="$x2" layoutX="718.0" layoutY="791.0" mnemonicParsing="false" onAction="#LogoutEvent" prefHeight="59.0" prefWidth="186.0" text="Log out" />
     <Button fx:id="CheckAva" font="$x2" layoutX="717.0" layoutY="721.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="186.0" text="Room Available" />
     <MenuButton fx:id="HallButton" layoutX="1368.0" layoutY="18.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="142.0" text="Hall List">

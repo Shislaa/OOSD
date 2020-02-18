@@ -106,9 +106,12 @@ public class Event_Controller {
 	private TextField LDurr;
 	@FXML
 	private Button EditBttn;
+	@FXML
+	private Button EditAllButton;
 	private static int counterHall = 0;
 	static boolean IsManager = false;
 	static boolean IsWarden = false;
+	static int EditAllCounter = 0;
 
 
 	// [[Login controller]]
@@ -381,5 +384,35 @@ public class Event_Controller {
 			Columns(HallList.get(2).RoomList);
 		}
 
+	}
+
+	public void ViewAllController(ActionEvent event){
+		EditAllCounter++;
+		if(EditAllCounter % 2 == 1){
+			LNumb.setDisable(false);
+			SName.setDisable(false);
+			SID.setDisable(false);
+			OStatus.setDisable(false);
+			LDurr.setDisable(false);
+			CStatus.setDisable(false);
+		}
+		else{
+			if(IsManager == true){
+				LNumb.setDisable(false);
+				SName.setDisable(false);
+				SID.setDisable(false);
+				OStatus.setDisable(false);
+				LDurr.setDisable(false);
+				CStatus.setDisable(true);
+			}
+			else if(IsWarden){
+				LNumb.setDisable(true);
+				SName.setDisable(true);
+				SID.setDisable(true);
+				OStatus.setDisable(true);
+				LDurr.setDisable(true);
+				CStatus.setDisable(false);
+			}
+		}
 	}
 }
