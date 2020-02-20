@@ -153,6 +153,12 @@ public class Event_Controller {
 		primaryStage.setTitle("UWE Accomodation System");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		if(IsManager) {
+			IsManager = false;
+		}
+		else {
+			IsWarden = false;
+		}
 	}
 
 	public void HallData() throws NumberFormatException, CsvValidationException, IOException{
