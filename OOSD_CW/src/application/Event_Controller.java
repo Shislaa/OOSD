@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,7 +36,7 @@ import javafx.stage.Stage;
 
 public class Event_Controller {
 
-	private 	ObservableList<Hall> HallList = FXCollections.observableArrayList();;
+	private static 	ObservableList<Hall> HallList = FXCollections.observableArrayList();;
 	private 	String[] HallTitle;
 	private  	String[] RoomTitle;
 	private 	ObserveList DisplayList;
@@ -144,8 +145,14 @@ public class Event_Controller {
 			}
 		}
 	}
-	public void LogoutEvent(ActionEvent event) {
+	public void LogoutEvent(ActionEvent event) throws IOException {
+		Stage primaryStage = new Stage();
 		((Node)event.getSource()).getScene().getWindow().hide();
+		Parent pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		Scene scene = new Scene(pane);
+		primaryStage.setTitle("UWE Accomodation System");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 	public void HallData() throws NumberFormatException, CsvValidationException, IOException{
