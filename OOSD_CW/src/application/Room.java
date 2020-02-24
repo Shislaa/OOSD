@@ -4,6 +4,10 @@ package application;
 public class Room {
 	String cleaningStatus;
 	String occupancyStatus;
+	boolean IsClean;
+	boolean IsDirty;
+	boolean IsOffline;
+	boolean IsOccied;
 	int rentrate;
 	int area;
 	String roomnumber;
@@ -57,6 +61,30 @@ public class Room {
 	}
 	public void setRoomlease(Lease roomlease) {
 		this.roomlease = roomlease;
+	}
+	public boolean isIsClean() {
+		return IsClean;
+	}
+	public void setIsClean(boolean isClean) {
+		IsClean = isClean;
+	}
+	public boolean isIsDirty() {
+		return IsDirty;
+	}
+	public void setIsDirty(boolean isDirty) {
+		IsDirty = isDirty;
+	}
+	public boolean isIsOffline() {
+		return IsOffline;
+	}
+	public void setIsOffline(boolean isOffline) {
+		IsOffline = isOffline;
+	}
+	public boolean IsOccied() {
+		return IsOccied;
+	}
+	public void setIsOccied(boolean occied) {
+		IsOccied = occied;
 	}
 
 

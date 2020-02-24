@@ -100,15 +100,26 @@ public class Event_Controller {
 	@FXML
 	private TextField SID;
 	@FXML
-	private TextField OStatus;
+	private MenuButton OStatus;
 	@FXML
-	private TextField CStatus;
+	private MenuButton CStatus;
 	@FXML
 	private TextField LDurr;
 	@FXML
 	private Button EditBttn;
 	@FXML
 	private Button EditAllButton;
+	@FXML
+	private MenuItem Oced;
+	@FXML
+	private MenuItem Unoced;
+	@FXML
+	private MenuItem Clean;
+	@FXML
+	private MenuItem Dirty;
+	@FXML
+	private MenuItem Offline;
+
 	private static int counterHall = 0;
 	static boolean IsManager = false;
 	static boolean IsWarden = false;
@@ -204,7 +215,28 @@ public class Event_Controller {
 					room.setHallAddress(temp[1]);
 					room.setRoomnumber(temp[2]);
 					room.setOccupancyStatus(temp[3]);
+					if(room.getOccupancyStatus().equals("Occupied")){
+						room.setIsOccied(true);
+					}
+					else{
+						room.IsOccied = false;;
+					}
 					room.setCleaningStatus(temp[4]);
+					if(room.getCleaningStatus().equals("Clean")){
+						room.setIsClean(true);
+						room.setIsDirty(false);
+						room.setIsOffline(false);
+					}
+					else if(room.getCleaningStatus().equals("Dirty")){
+						room.setIsDirty(true);
+						room.setIsClean(false);
+						room.setIsOffline(false);
+					}
+					else if(room.getCleaningStatus().equals("Offline")){
+						room.setIsClean(false);
+						room.setIsDirty(false);
+						room.setIsOffline(true);
+					}
 					room.setArea(Integer.valueOf(temp[5]));
 					room.setRentrate(Integer.valueOf(temp[6]));
 					room.roomlease.setLnum(temp[7]);
@@ -366,6 +398,26 @@ public class Event_Controller {
 
 	}
 
+	public void CSController(ActionEvent event){
+		Clean.setOnAction(a->{
+			CStatus.setText(Clean.getText());
+		});
+		Dirty.setOnAction(a->{
+			CStatus.setText(Dirty.getText());
+		});
+		Offline.setOnAction(a->{
+			CStatus.setText(Offline.getText());
+		});
+	}
+
+	public void OSController(ActionEvent event){
+		Oced.setOnAction(a->{
+			OStatus.setText(Oced.getText());
+		});
+		Unoced.setOnAction(a->{
+			OStatus.setText(Unoced.getText());
+		});
+	}
 	public void EditInfo(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
 		String HalName = DisplayList.getHallName();
 		String RoomNumber = DisplayList.getRoomnumber();
@@ -388,8 +440,31 @@ public class Event_Controller {
 		HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setName(SName.getText());;
 		HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setID(SID.getText());;
 		HallList.get(Hn).RoomList.get(Rn).setOccupancyStatus(OStatus.getText());;
-		HallList.get(Hn).RoomList.get(Rn).setCleaningStatus(CStatus.getText());;
+		String OStemp = HallList.get(Hn).RoomList.get(Rn).getOccupancyStatus();
+		if(OStemp.equals("Occupied")){
+			HallList.get(Hn).RoomList.get(Rn).setIsOccied(true);
+		}
+		else{
+			HallList.get(Hn).RoomList.get(Rn).IsOccied = false;;
+		}
 
+		HallList.get(Hn).RoomList.get(Rn).setCleaningStatus(CStatus.getText());;
+		String CStemp = HallList.get(Hn).RoomList.get(Rn).getCleaningStatus();
+		if(CStemp.equals("Clean")){
+			HallList.get(Hn).RoomList.get(Rn).setIsClean(true);
+			HallList.get(Hn).RoomList.get(Rn).setIsDirty(false);
+			HallList.get(Hn).RoomList.get(Rn).setIsOffline(false);
+		}
+		else if(CStemp.equals("Dirty")){
+			HallList.get(Hn).RoomList.get(Rn).setIsDirty(true);
+			HallList.get(Hn).RoomList.get(Rn).setIsClean(false);
+			HallList.get(Hn).RoomList.get(Rn).setIsOffline(false);
+		}
+		else if(CStemp.equals("Offline")){
+			HallList.get(Hn).RoomList.get(Rn).setIsClean(false);
+			HallList.get(Hn).RoomList.get(Rn).setIsDirty(false);
+			HallList.get(Hn).RoomList.get(Rn).setIsOffline(true);
+		}
 		if(HallList.get(Hn).getName().equals("UWEH1")){
 			Columns(HallList.get(0).RoomList);
 		}
@@ -431,4 +506,6 @@ public class Event_Controller {
 			}
 		}
 	}
+
+
 }

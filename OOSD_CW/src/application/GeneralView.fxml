@@ -82,9 +82,20 @@
     <TextField fx:id="SName" layoutX="216.0" layoutY="682.0" prefWidth="186.0" />
     <TextField fx:id="SID" layoutX="216.0" layoutY="710.0" prefWidth="186.0" />
     <Label font="$x3" layoutX="86.0" layoutY="737.0" prefWidth="130.0" text="Occupancy Status:" />
-    <TextField fx:id="OStatus" layoutX="216.0" layoutY="737.0" prefWidth="186.0" />
     <Label font="$x3" layoutX="86.0" layoutY="764.0" prefWidth="130.0" text="Cleaning Status:" />
-    <TextField fx:id="CStatus" layoutX="216.0" layoutY="764.0" prefWidth="186.0" />
     <Button fx:id="EditBttn" layoutX="402.0" layoutY="806.0" mnemonicParsing="false" onAction="#EditInfo" text="Edit" />
+    <MenuButton fx:id="OStatus" alignment="CENTER" contentDisplay="LEFT" layoutX="216.0" layoutY="736.0" mnemonicParsing="false" prefWidth="186.0" text="Occupancy Status" textAlignment="CENTER">
+      <items>
+        <MenuItem mnemonicParsing="false" onAction="#OSController" text="Occupied" fx:id="Oced" />
+        <MenuItem mnemonicParsing="false" onAction="#OSController" text="Unoccupied" fx:id="Unoced" />
+      </items>
+    </MenuButton>
+    <MenuButton fx:id="CStatus" alignment="CENTER" contentDisplay="LEFT" layoutX="216.0" layoutY="770.0" mnemonicParsing="false" prefWidth="186.0" text="Cleaning Status" textAlignment="CENTER">
+      <items>
+        <MenuItem mnemonicParsing="false" onAction="#CSController" text="Clean" fx:id="Clean" />
+        <MenuItem mnemonicParsing="false" onAction="#CSController" text="Dirty" fx:id="Dirty" />
+        <MenuItem mnemonicParsing="false" onAction="#CSController" text="Offline" fx:id="Offline" />
+      </items>
+    </MenuButton>
   </children>
 </AnchorPane>
