@@ -34,7 +34,7 @@ public class Main extends Application {
 		}
 	}
 	// [[ MAIN FUNCTION ]]
-	public static void main(String[] args) throws IOException, CsvValidationException {
+	public static void main(String[] args) throws IOException, CsvValidationException,NullPointerException {
 		launch(args);
 	}
 

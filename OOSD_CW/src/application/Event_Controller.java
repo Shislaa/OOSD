@@ -6,7 +6,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -16,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,7 +38,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Event_Controller {
+public class Event_Controller{
 
 	private static 	ObservableList<Hall> HallList = FXCollections.observableArrayList();;
 	private 	String[] HallTitle;
@@ -119,7 +123,10 @@ public class Event_Controller {
 	private MenuItem Dirty;
 	@FXML
 	private MenuItem Offline;
-
+	@FXML
+	private Button DeleteBttn;
+	@FXML
+	private Label Warning;
 	private static int counterHall = 0;
 	static boolean IsManager = false;
 	static boolean IsWarden = false;
@@ -418,61 +425,88 @@ public class Event_Controller {
 			OStatus.setText(Unoced.getText());
 		});
 	}
-	public void EditInfo(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
-		String HalName = DisplayList.getHallName();
-		String RoomNumber = DisplayList.getRoomnumber();
-		int Hn = 0;
-		int Rn = 0;
-		for (int i =0; i < HallList.size();i++){
-			if(HalName.equals(HallList.get(i).getName())){
-				for (int j = 0; j < HallList.get(i).RoomList.size(); j++){
-					if(RoomNumber.equals(HallList.get(i).RoomList.get(j).roomnumber)){
-						Hn = i;
-						Rn = j;
-						break;
+	public void EditInfo(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException,NullPointerException, InvocationTargetException{
+		
+		String StuNameTemp = SName.getText();
+		String LDurTemp = LDurr.getText();
+		boolean StuNameLegit = true;
+		boolean LDurLegit = true;
+		for(int i = 0; i < StuNameTemp.length();i++) {
+			if(Character.isDigit(StuNameTemp.charAt(i))) {
+				StuNameLegit = false;
+				Warning.setText("Name cannot have invalid characters. PLease try again");
+				break;
+			}
+		}
+		for(int i =0; i < LDurTemp.length();i++) {
+			if(Character.isLetter(LDurTemp.charAt(i))) {
+				LDurLegit = false;
+				Warning.setText("Lease Duration cannot have number. Please try again");
+				break;
+			}
+		}
+		
+		if(!StuNameLegit && !LDurLegit) {
+			Warning.setText("Invalid input. Please check again!");
+		}
+		
+		if(StuNameLegit && LDurLegit) {
+			String HalName = DisplayList.getHallName();
+			String RoomNumber = DisplayList.getRoomnumber();
+			Warning.setText(" ");
+			int Hn = 0;
+			int Rn = 0;
+			for (int i =0; i < HallList.size();i++){
+				if(HalName.equals(HallList.get(i).getName())){
+					for (int j = 0; j < HallList.get(i).RoomList.size(); j++){
+						if(RoomNumber.equals(HallList.get(i).RoomList.get(j).roomnumber)){
+							Hn = i;
+							Rn = j;
+							break;
+						}
 					}
 				}
+				break;
 			}
-			break;
-		}
-		HallList.get(Hn).RoomList.get(Rn).roomlease.setLnum(LNumb.getText());
-		HallList.get(Hn).RoomList.get(Rn).roomlease.setLduration(LDurr.getText());;
-		HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setName(SName.getText());;
-		HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setID(SID.getText());;
-		HallList.get(Hn).RoomList.get(Rn).setOccupancyStatus(OStatus.getText());;
-		String OStemp = HallList.get(Hn).RoomList.get(Rn).getOccupancyStatus();
-		if(OStemp.equals("Occupied")){
-			HallList.get(Hn).RoomList.get(Rn).setIsOccied(true);
-		}
-		else{
-			HallList.get(Hn).RoomList.get(Rn).IsOccied = false;;
-		}
+			HallList.get(Hn).RoomList.get(Rn).roomlease.setLnum(LNumb.getText());
+			HallList.get(Hn).RoomList.get(Rn).roomlease.setLduration(LDurr.getText());;
+			HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setName(SName.getText());;
+			HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setID(SID.getText());;
+			HallList.get(Hn).RoomList.get(Rn).setOccupancyStatus(OStatus.getText());;
+			String OStemp = HallList.get(Hn).RoomList.get(Rn).getOccupancyStatus();
+			if(OStemp.equals("Occupied")){
+				HallList.get(Hn).RoomList.get(Rn).setIsOccied(true);
+			}
+			else{
+				HallList.get(Hn).RoomList.get(Rn).IsOccied = false;;
+			}
 
-		HallList.get(Hn).RoomList.get(Rn).setCleaningStatus(CStatus.getText());;
-		String CStemp = HallList.get(Hn).RoomList.get(Rn).getCleaningStatus();
-		if(CStemp.equals("Clean")){
-			HallList.get(Hn).RoomList.get(Rn).setIsClean(true);
-			HallList.get(Hn).RoomList.get(Rn).setIsDirty(false);
-			HallList.get(Hn).RoomList.get(Rn).setIsOffline(false);
-		}
-		else if(CStemp.equals("Dirty")){
-			HallList.get(Hn).RoomList.get(Rn).setIsDirty(true);
-			HallList.get(Hn).RoomList.get(Rn).setIsClean(false);
-			HallList.get(Hn).RoomList.get(Rn).setIsOffline(false);
-		}
-		else if(CStemp.equals("Offline")){
-			HallList.get(Hn).RoomList.get(Rn).setIsClean(false);
-			HallList.get(Hn).RoomList.get(Rn).setIsDirty(false);
-			HallList.get(Hn).RoomList.get(Rn).setIsOffline(true);
-		}
-		if(HallList.get(Hn).getName().equals("UWEH1")){
-			Columns(HallList.get(0).RoomList);
-		}
-		if(HallList.get(Hn).getName().equals("UWEH2")){
-			Columns(HallList.get(1).RoomList);
-		}
-		if(HallList.get(Hn).getName().equals("UWEH3")){
-			Columns(HallList.get(2).RoomList);
+			HallList.get(Hn).RoomList.get(Rn).setCleaningStatus(CStatus.getText());;
+			String CStemp = HallList.get(Hn).RoomList.get(Rn).getCleaningStatus();
+			if(CStemp.equals("Clean")){
+				HallList.get(Hn).RoomList.get(Rn).setIsClean(true);
+				HallList.get(Hn).RoomList.get(Rn).setIsDirty(false);
+				HallList.get(Hn).RoomList.get(Rn).setIsOffline(false);
+			}
+			else if(CStemp.equals("Dirty")){
+				HallList.get(Hn).RoomList.get(Rn).setIsDirty(true);
+				HallList.get(Hn).RoomList.get(Rn).setIsClean(false);
+				HallList.get(Hn).RoomList.get(Rn).setIsOffline(false);
+			}
+			else if(CStemp.equals("Offline")){
+				HallList.get(Hn).RoomList.get(Rn).setIsClean(false);
+				HallList.get(Hn).RoomList.get(Rn).setIsDirty(false);
+				HallList.get(Hn).RoomList.get(Rn).setIsOffline(true);
+			}
+			if(HallList.get(Hn).getName().equals("UWEH1")){
+				Columns(HallList.get(0).RoomList);
+			}
+			if(HallList.get(Hn).getName().equals("UWEH2")){
+				Columns(HallList.get(1).RoomList);
+			}
+			if(HallList.get(Hn).getName().equals("UWEH3")){
+				Columns(HallList.get(2).RoomList);
+			}
 		}
 
 	}
@@ -506,6 +540,14 @@ public class Event_Controller {
 			}
 		}
 	}
-
-
+	public void DeleteController(ActionEvent event) throws NumberFormatException, CsvValidationException, NullPointerException, InvocationTargetException, IOException {
+		LNumb.setText(" ");
+		SName.setText(" ");
+		SID.setText(" ");
+		OStatus.setText("Unoccupied");
+		LDurr.setText(" ");
+		CStatus.setText("Offline");
+		EditInfo(event);
+		
+	}
 }
