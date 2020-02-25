@@ -426,11 +426,15 @@ public class Event_Controller{
 		});
 	}
 	public void EditInfo(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException,NullPointerException, InvocationTargetException{
-		
+
 		String StuNameTemp = SName.getText();
 		String LDurTemp = LDurr.getText();
+		String OSTemp = OStatus.getText();
+		String CSTemp = CStatus.getText();
 		boolean StuNameLegit = true;
 		boolean LDurLegit = true;
+		boolean OSLegit = true;
+		boolean UnOSLegit = true;
 		for(int i = 0; i < StuNameTemp.length();i++) {
 			if(Character.isDigit(StuNameTemp.charAt(i))) {
 				StuNameLegit = false;
@@ -445,12 +449,20 @@ public class Event_Controller{
 				break;
 			}
 		}
-		
+
 		if(!StuNameLegit && !LDurLegit) {
 			Warning.setText("Invalid input. Please check again!");
 		}
-		
-		if(StuNameLegit && LDurLegit) {
+
+		if(OSTemp.equals("Occupied") && CSTemp.equals("Offline")){
+			OSLegit = false;
+			Warning.setText("Occupied Room cannot be offline!");
+		}
+		if(OSTemp.equals("Unoccupied") && (!LNumb.getText().equals(" ") || !LDurr.getText().equals(" ") || !SName.getText().equals(" ") || !SID.getText().equals(" "))){
+			UnOSLegit = false;
+			Warning.setText("Unoccupied room cannot have lease information. If you want to delete a lease, use the Delete button");
+		}
+		if(StuNameLegit && LDurLegit && OSLegit && UnOSLegit) {
 			String HalName = DisplayList.getHallName();
 			String RoomNumber = DisplayList.getRoomnumber();
 			Warning.setText(" ");
@@ -548,6 +560,6 @@ public class Event_Controller{
 		LDurr.setText(" ");
 		CStatus.setText("Offline");
 		EditInfo(event);
-		
+
 	}
 }
