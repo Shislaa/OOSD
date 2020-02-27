@@ -39,6 +39,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Event_Controller{
+// [[ Initialize variables ]]
 
 	private static 	ObservableList<Hall> HallList = FXCollections.observableArrayList();;
 	private 	String[] HallTitle;
@@ -136,6 +137,7 @@ public class Event_Controller{
 	// [[Login controller]]
 
 	public void LoginEvent(ActionEvent event) throws CsvValidationException, IOException {
+		// [[Checking if it a manager or a warden]]
 		if(Username.getText().equals("admin") && Password.getText().equals("admin")) {
 			IsManager = true;
 		}
@@ -147,6 +149,7 @@ public class Event_Controller{
 			Statuslbl.setText("Wrong username or password");
 		}
 		if (IsManager || IsWarden){
+			// [[IF LOGIN SUCCESS, PROCEED TO SHOW THE MAIN SCENE]]
 			System.out.println("Login Success");
 			// [[ Hide login window when login success]]
 			((Node)event.getSource()).getScene().getWindow().hide();
@@ -163,6 +166,7 @@ public class Event_Controller{
 			}
 		}
 	}
+	//[[ LOG OUT BUTTON CONTROLLER]]
 	public void LogoutEvent(ActionEvent event) throws IOException {
 		Stage primaryStage = new Stage();
 		((Node)event.getSource()).getScene().getWindow().hide();
@@ -171,6 +175,7 @@ public class Event_Controller{
 		primaryStage.setTitle("UWE Accomodation System");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		//[[ RESET THE CHEKING VARIABLE EVERYTIME LOG OUT IS USED ]]
 		if(IsManager) {
 			IsManager = false;
 		}
@@ -178,7 +183,7 @@ public class Event_Controller{
 			IsWarden = false;
 		}
 	}
-
+// [[ ADDING DATA FROM FILES TO HALL LIST ]]
 	public void HallData() throws NumberFormatException, CsvValidationException, IOException{
 		try {
 			CSVReader reader = new CSVReader(new FileReader("Hall.csv"));
@@ -250,6 +255,8 @@ public class Event_Controller{
 					room.roomlease.setLduration(temp[8]);
 					room.roomlease.Student.setName(temp[9]);
 					room.roomlease.Student.setID(temp[10]);
+
+					//[[ CHECKING FOR THE CORRECT HALL TO ADD THE HALL'S ROOM LIST ]]
 					for(int i = 0; i < HallList.size();i++){
 						if (HallList.get(i).getName().equals(room.getHallName())){
 							HallList.get(i).RoomList.add(room);
@@ -264,7 +271,7 @@ public class Event_Controller{
 			e.printStackTrace();
 		}
 	}
-
+//[[ CREATING COLUMNS FOR THE MAIN SCENE ]]
 	public void Columns(ObservableList<Room> RoomList){
 		// Hall Name Column
 
@@ -334,7 +341,7 @@ public class Event_Controller{
 
 		return Temp;
 	}
-
+// [[ HALL SELECTOR CONTROLLER]]
 	public void Button1Controller(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException{
 		if (counterHall == 0){
 			HallData();
@@ -382,7 +389,7 @@ public class Event_Controller{
 	    Columns(HallList.get(2).RoomList);
 	    HallButton.setText(Choice3.getText());
 	}
-
+// [[ SHOWING INFORMATION IN THE LEFT CORNER, THE LABEL CAN DYNAMICALLY CHANGE ACCORDING TO WHICH ROOM IS CURRENTLY CHOSEN ON SCREEN]]
 	public void displayShiet(MouseEvent event){
 		ObserveList newList = (ObserveList) InfoTable.getSelectionModel().getSelectedItem();
 		DisplayList = newList;
@@ -404,29 +411,30 @@ public class Event_Controller{
 		}
 
 	}
-
+//[[ MAKING THE CLEANING STATUS AND OCCUPANCY STATUS MENUBAR CHANGE ACCORDING TO THE CHOICES]]
 	public void CSController(ActionEvent event){
 		Clean.setOnAction(a->{
-			CStatus.setText(Clean.getText());
+			CStatus.setText("Clean");
 		});
 		Dirty.setOnAction(a->{
-			CStatus.setText(Dirty.getText());
+			CStatus.setText("Dirty");
 		});
 		Offline.setOnAction(a->{
-			CStatus.setText(Offline.getText());
+			CStatus.setText("Offline");
 		});
 	}
 
 	public void OSController(ActionEvent event){
 		Oced.setOnAction(a->{
-			OStatus.setText(Oced.getText());
+			OStatus.setText("Occupied");
 		});
 		Unoced.setOnAction(a->{
-			OStatus.setText(Unoced.getText());
+			OStatus.setText("Unoccupied");
 		});
 	}
+// [[ EDIT BUTTON CONTROLLER ]]
 	public void EditInfo(ActionEvent event) throws NumberFormatException, CsvValidationException, IOException,NullPointerException, InvocationTargetException{
-
+// [[ CHECKING THE LEGITIMATCY OF THE INFORMATION INPUT INTO THE LIST ]]
 		String StuNameTemp = SName.getText();
 		String LDurTemp = LDurr.getText();
 		String OSTemp = OStatus.getText();
@@ -445,7 +453,7 @@ public class Event_Controller{
 		for(int i =0; i < LDurTemp.length();i++) {
 			if(Character.isLetter(LDurTemp.charAt(i))) {
 				LDurLegit = false;
-				Warning.setText("Lease Duration cannot have number. Please try again");
+				Warning.setText("Lease Duration cannot have alphabetic character. Please try again");
 				break;
 			}
 		}
@@ -462,12 +470,16 @@ public class Event_Controller{
 			UnOSLegit = false;
 			Warning.setText("Unoccupied room cannot have lease information. If you want to delete a lease, use the Delete button");
 		}
+//
+
+// [[ ADDING INFORMATION IN TEXTFIELD INTO THE LIST ]]
 		if(StuNameLegit && LDurLegit && OSLegit && UnOSLegit) {
 			String HalName = DisplayList.getHallName();
 			String RoomNumber = DisplayList.getRoomnumber();
 			Warning.setText(" ");
 			int Hn = 0;
 			int Rn = 0;
+// [[ GETTING THE RIGHT ROOM IN THE LIST TO MODIFY THE INFORMATION]]
 			for (int i =0; i < HallList.size();i++){
 				if(HalName.equals(HallList.get(i).getName())){
 					for (int j = 0; j < HallList.get(i).RoomList.size(); j++){
@@ -480,6 +492,9 @@ public class Event_Controller{
 				}
 				break;
 			}
+//
+
+// [[ MODIFY THE LIST ]]
 			HallList.get(Hn).RoomList.get(Rn).roomlease.setLnum(LNumb.getText());
 			HallList.get(Hn).RoomList.get(Rn).roomlease.setLduration(LDurr.getText());;
 			HallList.get(Hn).RoomList.get(Rn).roomlease.Student.setName(SName.getText());;
@@ -522,8 +537,9 @@ public class Event_Controller{
 		}
 
 	}
-
+//[[ EDIT ALL FUNCTION CONTROLLER ]]
 	public void ViewAllController(ActionEvent event){
+// IF CLICK ONCE, THE VIEW ALL IS ACTIVATED, TWICE AND ITS DISABLE ]]
 		EditAllCounter++;
 		if(EditAllCounter % 2 == 1){
 			LNumb.setDisable(false);
@@ -552,6 +568,7 @@ public class Event_Controller{
 			}
 		}
 	}
+// [[ DELETE LEASE BUTTON CONTROLLER ]]
 	public void DeleteController(ActionEvent event) throws NumberFormatException, CsvValidationException, NullPointerException, InvocationTargetException, IOException {
 		LNumb.setText(" ");
 		SName.setText(" ");

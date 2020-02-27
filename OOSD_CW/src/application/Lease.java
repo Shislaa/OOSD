@@ -1,11 +1,14 @@
 package application;
 
 public class Lease {
+	// [[ INITIALIZE VARIABLE ]]
+
 	String Lnum;
 	String Lduration;
 	String roomnumber;
 	String Halladdress;
 	Human Student = new Human();
+	// GETTERS AND SETTERS
 
 	public String getLnum() {
 		return Lnum;

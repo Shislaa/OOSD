@@ -1,5 +1,7 @@
 package application;
 
+//[[ THIS CLASS IS AN EXTRA CLASS FOR THE PURPOSE OF MAKING THE PROCESS OF SHOWING THE INFORMATION ONTO THE TABLEVIEW EASIER ]]
+
 public class ObserveList {
 	String cleaningStatus;
 	String occupancyStatus;

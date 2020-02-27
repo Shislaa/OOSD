@@ -6,13 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Hall {
+	// [[ INITIALIZE VARIABLE ]]
 	String name;
 	String address;
 	int numroom;
 	String telenum;
 	ObservableList<Room> RoomList = FXCollections.observableArrayList();
 	Human Warden = new Human();
-
+// GETTERS AND SETTERS
 	public Hall(){
 
 	}

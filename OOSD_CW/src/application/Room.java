@@ -2,6 +2,7 @@ package application;
 
 
 public class Room {
+	// [[ INITIALIZE VARIABLE ]]
 	String cleaningStatus;
 	String occupancyStatus;
 	boolean IsClean;
@@ -14,6 +15,8 @@ public class Room {
 	String HallName;
 	String HallAddress;
 	Lease roomlease = new Lease();
+	// GETTERS AND SETTERS
+
 	public String getCleaningStatus() {
 		return cleaningStatus;
 	}
